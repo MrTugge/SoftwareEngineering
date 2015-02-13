@@ -38,7 +38,6 @@ public class StatistiekenView extends JPanel implements ActionListener
 	    
 	    gegevens[0].setText(getWorpen() + " Worpen"); 
 	    for (int i = 0; i<7; i++){
-	    	System.out.println(i);
 	    	if (i==0){
 	    		gegevens[i].setText(getWorpen() + " Worpen");
 	    	} else {
