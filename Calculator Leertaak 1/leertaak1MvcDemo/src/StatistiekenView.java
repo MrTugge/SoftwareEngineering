@@ -6,21 +6,27 @@ import java.util.*;
     
 public class StatistiekenView extends JPanel implements ActionListener
 {
-	private JTextArea statistiekenVeld = new JTextArea(); 
-	private final static String newline = "\n";
+	private GridLayout statistiekenVeld = new GridLayout(7, 1); 
 	int[] statistieken; 
 	DobbelsteenModel d;
 	int worpen;
+	JTextArea[] gegevens;
     
 	public StatistiekenView()
 	{
-	    this.setLayout(new FlowLayout());
-	    this.add(statistiekenVeld);
+		this.setLayout(statistiekenVeld);
+	    
 	    statistieken = new int[6];
 	    for(int i=0; i<6; i++){
 	    	statistieken[i]=0;
-	    	System.out.println(statistieken[i]);
 	    }
+	    
+	    gegevens = new JTextArea[7];
+	    for (int i = 0; i<7; i++){
+	    	gegevens[i] = new JTextArea("");
+	    	add(gegevens[i]);
+	    }
+	 
 	}
 	
 	public void actionPerformed( ActionEvent e )
@@ -30,10 +36,14 @@ public class StatistiekenView extends JPanel implements ActionListener
 	    worpen++;
 	    statistieken[waarde-1] += 1;
 	    
-	    statistiekenVeld.setText("");
-	    statistiekenVeld.append(getWorpen() + " Worpen" + newline); 
-	    for (int i = 0; i<6; i++){
-	    	statistiekenVeld.append(i+1 + ": " + statistieken[i] + " keer" + newline);
+	    gegevens[0].setText(getWorpen() + " Worpen"); 
+	    for (int i = 0; i<7; i++){
+	    	System.out.println(i);
+	    	if (i==0){
+	    		gegevens[i].setText(getWorpen() + " Worpen");
+	    	} else {
+	    		gegevens[i].setText(i + ": " + statistieken[i-1] + " keer");
+	    	}
 	    }
 	}
 	
